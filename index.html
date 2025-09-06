@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Code a Pookkalam</title>
+  <style>
+    body {
+    position: relative;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .pookkalam {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .maveli {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    /* Crown */
+    .crown {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .small-box {
+      height: 2vh;
+      width: 2vh;
+      background-color: #FFB300;
+      border-radius: 5px 5px 0 0;
+      position: absolute;
+      bottom: 25px;
+    }
+
+    .big-box {
+      height: 4vh;
+      width: 7vh;
+      background-color: #FFB300;
+      border-radius: 1vh 1vh 0 0;
+    }
+
+    .small-circle {
+      position: absolute;
+      height: 9vh;
+      width: 9vh;
+      background-color: #FFD700;
+      border-radius: 50%;
+      z-index: -1;
+      bottom: -15px;
+    }
+
+    .big-circle {
+      position: absolute;
+      height: 10vh;
+      width: 10vh;
+      background-color: #FFB300;
+      border-radius: 50%;
+      z-index: -2;
+      bottom: -17px;
+    }
+
+    /* Face */
+    .face {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .face-box {
+      position: absolute;
+      height: 2.5vh;
+      width: 7vh;
+      background-color: antiquewhite;
+    }
+
+    .face-circle {
+      position: absolute;
+      height: 6vh;
+      width: 7vh;
+      background-color: antiquewhite;
+      border-radius: 50%;
+    }
+
+    /* Eyebrows + Kuri */
+    .eye-brows {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      height: 2vh;
+      width: 100%;
+    }
+
+    .eye-brows-left {
+      margin: 0.5vh;
+      background-color: #3D2B1F;
+      height: 0.5vh;
+      width: 2vh;
+      border-radius: 0vh 1vh 0vh 1vh;
+    }
+
+    .kuri {
+      width: 0.5vh;
+      height: 1vh;
+      background-color: #C21807;
+      border-radius: 1vh;
+    }
+
+    .eye-brows-right {
+      margin: 0.5vh;
+      background-color: #3D2B1F;
+      height: 0.5vh;
+      width: 2vh;
+      border-radius: 1vh 0vh 1vh 0vh;
+    }
+
+    /* Eyes */
+    .eyes {
+      position: absolute;
+      width: 100%;
+      top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 2vh;
+    }
+
+    .eye-inner {
+      width: 1vh;
+      height: 1vh;
+      background-color: white;
+      border-radius: 50% 0 50% 0;
+      transform: rotate(45deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .eye-ball {
+      width: 0.5vh;
+      height: 0.5vh;
+      background-color: #3D2B1F;
+      border-radius: 50%;
+    }
+
+    /* Mouth + Mustache */
+    .mouth {
+      position: absolute;
+      width: 100%;
+      height: 3vh;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mustache {
+      width: 10px;
+      height: 10px;
+      left: 0px;
+      top: 1px;
+      border-radius: 50%;
+      position: absolute;
+      color: #3D2B1F;
+      box-shadow: 
+        19px 2px 0 0 currentColor,
+        24px 2px 0 0 currentColor;
+      z-index: 1;
+    }
+
+    .mustache::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      bottom: -2px;
+      height: 6px;
+      width: 15px;
+      border-bottom: solid 10px currentColor;
+      border-radius: 0 0 0 100%;
+      transform: rotate(-40deg);
+      transform-origin: right 11px;  
+    }
+
+    .mustache::after {
+      content: "";
+      position: absolute;
+      left: 29px;
+      bottom: -2px;
+      height: 6px;
+      width: 15px;
+      border-bottom: solid 10px currentColor;
+      border-radius: 0 0 100% 0;
+      transform: rotate(40deg);
+      transform-origin: left 11px;    
+    }
+
+    .mouth-inner {
+      position: absolute;
+      width: 15px;
+      height: 5px;
+      background-color: #C21807;
+      border-radius: 50%;
+      top: 12px;
+      z-index: 0;
+    }
+
+    /* Hair */
+    .hair {
+      position: absolute;
+      width: 30%;
+      height: 16vh;
+      z-index: -3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .hair-rounds {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      box-shadow:
+        -1px 18px 0 0 #3D2B1F,
+         1px 30px 0 0 #3D2B1F,
+        -5px 30px 0 0 #3D2B1F,
+        -5px 20px 0 0 #3D2B1F,
+         1px 40px 0 0 #3D2B1F;
+    }
+
+    .reference-round{
+        position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      
+    }
+    .petal {
+        position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      
+      border-radius: 40px 0;
+      transform-origin: 0 0; /* <— KEY CHANGE */
+    }
+    .yellow-round{
+        position: absolute;
+        width:180px;
+        height: 180px;
+        background-color: yellow;
+        z-index: -6;
+        border-radius: 50%;
+    }
+    .green-round{
+        position: absolute;
+        width:220px;
+        height: 220px;
+        background-color: #1f431d;
+        z-index: -7;
+        border-radius: 50%;
+    }
+
+    .brown-round{
+        position: absolute;
+        width:360px;
+        height: 360px;
+        background-color: #b63025;
+        z-index: -17;
+        border-radius: 50%;
+    }
+    
+    .repeated-round{
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        
+        border-radius: 50%;
+       
+        
+       z-index: 20;
+    }
+    .rp-round-outer {
+        
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: orange;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* top: 50%;
+      left: 50%; */
+      transform-origin: center center;
+      
+    }
+
+    .rp-round-inner {
+      width: 15px;
+      height: 15px;
+      background-color: yellow;
+      border-radius: 50%;
+    }
+
+    .repeated-round > .rp-round-outer {
+  display: none; /* hides the original sample element */
+}
+
+  </style>
+</head>
+<body>
+  <div class="pookkalam">
+    <!-- Maveli starts -->
+    <div class="maveli">
+      
+      <!-- Crown -->
+      <div class="crown">
+        <div class="small-box"></div>
+        <div class="big-box"></div>
+        <div class="small-circle"></div>
+        <div class="big-circle"></div>
+      </div>
+
+      <!-- Face -->
+      <div class="face">
+        <div class="face-box"></div>
+        <div class="face-circle"></div>
+
+        <div class="eye-brows">
+          <div class="eye-brows-left"></div>
+          <div class="kuri"></div>
+          <div class="eye-brows-right"></div>
+        </div>
+
+        <div class="eyes">
+          <div class="eye-inner"><div class="eye-ball"></div></div>
+          <div class="eye-inner"><div class="eye-ball"></div></div>
+        </div>
+
+        <div class="mouth">
+          <div class="mustache"></div>
+          <div class="mouth-inner"></div>
+        </div>
+      </div>
+
+      <!-- Hair -->
+      <div class="hair">
+        <div class="hair-rounds"></div>
+        <div class="hair-rounds" style="transform: scaleX(-1);"></div>
+      </div>
+    </div>
+    <!-- Maveli ends -->
+
+    <!-- first white layer -->
+     <div id="reference-round" class="reference-round"></div>
+     <div class="yellow-round"></div>
+     <div class="green-round"></div>
+     <div class="brown-round"></div>
+     <div class="repeated-round">
+        <div class="rp-round-outer">
+        <div class="rp-round-inner"></div>
+        </div>
+     </div>
+     
+     <script>
+        const container = document.getElementById("reference-round");
+    
+        // Circles with custom petals, radius, size, tilt, rotation offset
+        const circles = [
+          { petals: 8,  radius: 40,  color: "white",    tilt: 100, width: 40,  height: 40 },
+          { petals: 8,  radius: 50,  color: "yellow",  tilt: 100, width: 50,  height: 50, rotate: 25 },
+          { petals: 8, radius: 60, color: "red",  tilt: 100, width: 60, height: 60 },
+          { petals: 8, radius: 70, color: "orange",   tilt: 100, width: 70, height: 70, rotate: 25 },
+          { petals: 30, radius: 110, color: "white",    tilt: 60,  width: 40, height: 40, zIndex: -8 },
+          { petals: 30, radius: 120, color: "gold",    tilt: 60,  width: 45, height: 45, zIndex: -9 },
+          { petals: 30, radius: 130, color: "orange",    tilt: 60,  width: 50, height: 50, zIndex: -10 },
+          { petals: 30, radius: 140, color: "#e43e28",    tilt: 60,  width: 55, height: 55, zIndex: -11 }   
+        ];
+    
+        circles.forEach((circle, cIndex) => {
+          for (let i = 0; i < circle.petals; i++) {
+            const petal = document.createElement("div");
+            petal.className = "petal";
+            petal.style.backgroundColor = circle.color;
+    
+            // Size
+            petal.style.width = circle.width + "px";
+            petal.style.height = circle.height + "px";
+    
+            // Rounded edge (teardrop-like)
+            petal.style.borderRadius = `${circle.height}px 0`;
+    
+            // Z-index layering (inner > outer)
+            petal.style.zIndex = circle.zIndex !== undefined ? circle.zIndex : circles.length - cIndex;
+
+            
+            // Angle for this petal
+            const angle = (360 / circle.petals) * i + (circle.rotate || 0);
+    
+            // Transform: position around circle, then tilt
+            petal.style.transform =
+              `rotate(${angle}deg) translate(${circle.radius}px) rotate(${circle.tilt}deg)`;
+    
+            container.appendChild(petal);
+          }
+
+
+        });
+
+    
+      </script>
+
+<script>
+    const numPetals = 8;         // number of petals
+    const radius = 90;           // distance from center
+    const rotationOffset = 5; // rotate entire flower (in degrees)
+
+    for (let i = 0; i < numPetals; i++) {
+      const angle = (360 / numPetals) * i + rotationOffset; 
+      const petal = document.createElement("div");
+      petal.className = "rp-round-outer";
+      petal.style.transform = `rotate(${angle}deg) translate(${radius}px)`;
+
+      const inner = document.createElement("div");
+      inner.className = "rp-round-inner";
+      petal.appendChild(inner);
+
+      document.body.appendChild(petal);
+    }
+  </script>
+  </div>
+</body>
+</html>
