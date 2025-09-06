@@ -258,7 +258,7 @@
       height: 40px;
       
       border-radius: 40px 0;
-      transform-origin: 0 0; /* <— KEY CHANGE */
+      transform-origin: 0 0; 
     }
     .yellow-round{
         position: absolute;
@@ -320,7 +320,7 @@
     }
 
     .repeated-round > .rp-round-outer {
-  display: none; /* hides the original sample element */
+  display: none; 
 }
 
   </style>
@@ -384,7 +384,7 @@
      <script>
         const container = document.getElementById("reference-round");
     
-        // Circles with custom petals, radius, size, tilt, rotation offset
+        
         const circles = [
           { petals: 8,  radius: 40,  color: "white",    tilt: 100, width: 40,  height: 40 },
           { petals: 8,  radius: 50,  color: "yellow",  tilt: 100, width: 50,  height: 50, rotate: 25 },
@@ -402,21 +402,20 @@
             petal.className = "petal";
             petal.style.backgroundColor = circle.color;
     
-            // Size
+       
             petal.style.width = circle.width + "px";
             petal.style.height = circle.height + "px";
     
-            // Rounded edge (teardrop-like)
+            
             petal.style.borderRadius = `${circle.height}px 0`;
     
-            // Z-index layering (inner > outer)
+        
             petal.style.zIndex = circle.zIndex !== undefined ? circle.zIndex : circles.length - cIndex;
 
             
-            // Angle for this petal
+            
             const angle = (360 / circle.petals) * i + (circle.rotate || 0);
     
-            // Transform: position around circle, then tilt
             petal.style.transform =
               `rotate(${angle}deg) translate(${circle.radius}px) rotate(${circle.tilt}deg)`;
     
@@ -430,9 +429,9 @@
       </script>
 
 <script>
-    const numPetals = 8;         // number of petals
-    const radius = 90;           // distance from center
-    const rotationOffset = 5; // rotate entire flower (in degrees)
+    const numPetals = 8;         
+    const radius = 90;          
+    const rotationOffset = 5; 
 
     for (let i = 0; i < numPetals; i++) {
       const angle = (360 / numPetals) * i + rotationOffset; 
